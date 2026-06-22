@@ -3,7 +3,7 @@
 
 - Mobile App developer.
 - Working on **Android** using **Kotlin**.
-- Exploring **Backend** with Node.js using **TypeScript**
+- Exploring macOs applications.
 
 ![Arpit's GitHub stats](https://github-readme-stats.vercel.app/api?username=arpitagarwal1301&show_icons=true&theme=default)
 
