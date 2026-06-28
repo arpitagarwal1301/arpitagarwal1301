@@ -1,4 +1,4 @@
-## Hi there 👋, Welcome to [Arpit's](https://www.linkedin.com/in/arpitagarwal1301/) profile 🙋‍♂️
+## Hi there 👋, Welcome to [Arpit's](https://arpitagarwal1301.github.io/) profile 🙋‍♂️
 <!-- About me -->
 
 - Mobile App developer.
