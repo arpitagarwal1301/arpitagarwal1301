@@ -5,7 +5,7 @@
 - Working on **Android** using **Kotlin**.
 - Exploring macOs applications.
 
-![Arpit's GitHub stats](https://github-readme-stats.vercel.app/api?username=arpitagarwal1301&show_icons=true&theme=default)
+[![Arpit's GitHub stats](./profile-summary-card-output/default/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 
 ## 🔗 Know more about me 
 
