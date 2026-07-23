@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/profile-summary-cards.yml
+      - scripts/generate_profile_stats.py
   schedule:
     - cron: "17 0 * * *"
   workflow_dispatch:
@@ -26,13 +27,31 @@ jobs:
       - name: Check out profile repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
-      - name: Generate and commit profile stats
-        uses: vn7n24fzkq/github-profile-summary-cards@89776cd44fb40c4f7b3e5c2db993728cd700d638 # release
+      - name: Generate profile stats
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          USERNAME: ${{ github.repository_owner }}
-          BRANCH_NAME: main
-          UTC_OFFSET: 5.5
-          THEME: default
-          AUTO_PUSH: true
+        run: |
+          python3 scripts/generate_profile_stats.py \
+            --username "${{ github.repository_owner }}" \
+            --output profile-summary-card-output/default/3-stats.svg
+
+      - name: Validate generated card
+        run: |
+          test -s profile-summary-card-output/default/3-stats.svg
+          grep -q '<svg' profile-summary-card-output/default/3-stats.svg
+          if grep -Eq 'ERROR|rate limited|Something went wrong' profile-summary-card-output/default/3-stats.svg; then
+            exit 1
+          fi
+
+      - name: Commit changed stats
+        run: |
+          git add profile-summary-card-output/default/3-stats.svg
+          if git diff --cached --quiet; then
+            echo "Stats are already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update GitHub profile stats"
+          git push
